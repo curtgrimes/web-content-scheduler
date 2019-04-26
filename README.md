@@ -8,14 +8,14 @@ A small script for showing or hiding HTML content client-side based on the curre
     <script src="https://cdn.jsdelivr.net/gh/curtgrimes/web-content-scheduler@1.0.0/web-content-scheduler.min.js"></script>
     ```
 
-1. Add this CSS to the page to hide scheduled elements on load:
+1. Add this CSS to the page:
     ```css
     [data-schedule]:not(.schedule-shown) { display:none; }
     ```
 
-1. Add a `data-schedule` attribute to DOM elements that you want to show or hide on a specific date or date range.
+1. Add a `data-schedule` attribute to any elements that you want to show or hide on a specific date or date range.
 
-    When specifying dates, use the format `YYYY/MM/DD`. Add a dash between dates to indicate a date range. Add a pipe (`|`) between ranges to indicate multiple ranges.
+    When specifying dates, use the format `YYYY/MM/DD`. Add a dash between dates to indicate a date range. Add a pipe (`|`) between ranges to separate multiple ranges.
 
     ### Examples:
 
@@ -23,19 +23,19 @@ A small script for showing or hiding HTML content client-side based on the curre
 
     1. Show an element from 2019/04/26 through 2019/04/30. Hide it at any time outside this range.
         ````html
-        <div data-schedule="2019/04/26-2019/04/30">Hello world</div>
+        <div data-schedule="2019/04/26 - 2019/04/30">Hello world</div>
         ````
 
     1. Show an element from 2019/04/26 10:00:00 local time through 2019/04/26 16:00:00 local time. Hide it at any time outside this range.
         ````html
-        <div data-schedule="2019/04/26 10:00:00-2019/04/30 16:00:00">Hello world</div>
+        <div data-schedule="2019/04/26 10:00:00 - 2019/04/30 16:00:00">Hello world</div>
         ````
 
     **Without year**
 
     1. Show an element every year from February 15 through February 20. Hide it at any time outside this range.
         ````html
-        <div data-schedule="02/15-02/20">Hello world</div>
+        <div data-schedule="02/15 - 02/20">Hello world</div>
         ````
 
     1. Show an element every April 10. Hide it on any other day of the year.
@@ -47,7 +47,7 @@ A small script for showing or hiding HTML content client-side based on the curre
 
     1. Show an element every year from January 1 through January 25 and July 1 through July 15. Hide it at any time outside this range.
         ````html
-        <div data-schedule="01/01-01/25 | 07/01-07/15">Hello world</div>
+        <div data-schedule="01/01 - 01/25 | 07/01 - 07/15">Hello world</div>
         ````
 
 ## It's just client-side
