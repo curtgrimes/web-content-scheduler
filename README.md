@@ -52,3 +52,9 @@ A small script for showing or hiding HTML content client-side based on the curre
 
 ## It's just client-side
 This is for environments where it makes the most sense to do this client-side in JavaScript. If you have important content that you don't want to be sent to the user at all during certain time ranges, look at ways to do this server-side.
+
+## Debugging
+To show all the scheduled content on the page that may be hidden, run this in the console. Any elements that were hidden will become hidden again when the script runs in the background (by default, once every minute);
+```js
+document.querySelectorAll('[data-schedule]').forEach((e) => { e.classList.add('schedule-shown') });
+```
