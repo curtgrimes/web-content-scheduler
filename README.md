@@ -3,7 +3,10 @@
 A small script for showing or hiding HTML content client-side based on the current date when you can't do it server-side. Zero dependencies.
 
 ## Usage
-1. Include (link to minified file)
+1. Include this JavaScript on the page:
+    ```html
+    <script src="https://cdn.jsdelivr.net/gh/curtgrimes/web-content-scheduler@1.0.0/web-content-scheduler.min.js"></script>
+    ```
 
 1. Add this CSS to the page to hide scheduled elements on load:
     ```css
@@ -14,7 +17,7 @@ A small script for showing or hiding HTML content client-side based on the curre
 
     When specifying dates, use the format `YYYY/MM/DD`. Add a dash between dates to indicate a date range. Add a pipe (`|`) between ranges to indicate multiple ranges.
 
-    Examples:
+    ### Examples:
 
     **Date and time ranges**
 
