@@ -40,7 +40,7 @@ function webContentScheduler() {
 
             var splitDateObjects = startAndEnd.map(function (dateString, index) {
                 dateString = dateString.trim();
-                var isStartRange = ;
+                var isStartRange = index === 0;
                 var isEndRange = index === 1;
 
                 var regex = /^(\d{4})?\/?(\d{2})\/(\d{2}) ?(\d\d)?:?(\d\d)?:?(\d\d)?$/gm;
