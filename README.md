@@ -5,7 +5,7 @@ A small script for showing or hiding HTML content client-side based on the curre
 ## Usage
 1. Include this JavaScript on the page:
     ```html
-    <script src="https://cdn.jsdelivr.net/gh/curtgrimes/web-content-scheduler@1.0.0/web-content-scheduler.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/curtgrimes/web-content-scheduler@1/web-content-scheduler.min.js"></script>
     ```
 
 1. Add this CSS to the page:
