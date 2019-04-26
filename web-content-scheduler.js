@@ -6,17 +6,18 @@ function webContentScheduler() {
     Array.prototype.forEach.call(scheduleElements, function (el) {
         var dateRangesMatchingCurrentDate = parseIntoDateRanges(el.dataset.schedule).filter(function (dateRange) {
             var now = new Date();
-            if (dateRange[0] <= now && dateRange[1] >= now) {
-                return true;
-            }
+            
+            // If the current date is within the start ([0]) and end ([1])
+            return dateRange[0] <= now && dateRange[1] >= now;
         });
-
+        
+        var className = 'schedule-shown';
         if (dateRangesMatchingCurrentDate.length > 0) {
             // Show this element
-            el.classList.add('schedule-shown');
+            el.classList.add(className);
         }
         else {
-            el.classList.remove('schedule-shown');
+            el.classList.remove(className);
         }
     });
 
@@ -39,24 +40,24 @@ function webContentScheduler() {
 
             var splitDateObjects = startAndEnd.map(function (dateString, index) {
                 dateString = dateString.trim();
-                var isStartRange = index === 0;
+                var isStartRange = ;
                 var isEndRange = index === 1;
 
                 var regex = /^(\d{4})?\/?(\d{2})\/(\d{2}) ?(\d\d)?:?(\d\d)?:?(\d\d)?$/gm;
-                var m, year, month, day, hour, minute, second;
+                var match, year, month, day, hour, minute, second;
 
-                while ((m = regex.exec(dateString)) !== null) {
+                while ((match = regex.exec(dateString)) !== null) {
                     // This is necessary to avoid infinite loops with zero-width matches
-                    if (m.index === regex.lastIndex) {
+                    if (match.index === regex.lastIndex) {
                         regex.lastIndex++;
                     }
 
-                    year = m[1];
-                    month = m[2];
-                    day = m[3];
-                    hour = m[4];
-                    minute = m[5];
-                    second = m[6];
+                    year = match[1];
+                    month = match[2];
+                    day = match[3];
+                    hour = match[4];
+                    minute = match[5];
+                    second = match[6];
                 }
 
                 // End here if invalid date
@@ -68,34 +69,34 @@ function webContentScheduler() {
                 if (hour) {
                     // A time was provided.
                     return {
-                        year: year,
-                        month: month,
-                        day: day,
-                        hour: hour,
-                        minute: (minute || '00'),
-                        second: (second || '00'),
+                        y: year,
+                        m: month,
+                        d: day,
+                        h: hour,
+                        min: (minute || '00'),
+                        s: (second || '00'),
                     };
                 }
                 else if (isStartRange) {
                     // A time wasn't provided, so assume 00:00:00 (start of the day)
                     return {
-                        year: year,
-                        month: month,
-                        day: day,
-                        hour: '00',
-                        minute: '00',
-                        second: '00',
+                        y: year,
+                        m: month,
+                        d: day,
+                        h: '00',
+                        min: '00',
+                        s: '00',
                     };
                 }
                 else if (isEndRange) {
                     // A time wasn't provided, so assume 23:59:59 (end of the day)
                     return {
-                        year: year,
-                        month: month,
-                        day: day,
-                        hour: '23',
-                        minute: '59',
-                        second: '59',
+                        y: year,
+                        m: month,
+                        d: day,
+                        h: '23',
+                        min: '59',
+                        s: '59',
                     };
                 }
             });
@@ -106,17 +107,18 @@ function webContentScheduler() {
                 // end of the day.
 
                 splitDateObjects.push({
-                    year: splitDateObjects[0].year,
-                    month: splitDateObjects[0].month,
-                    day: splitDateObjects[0].day,
-                    hour: '23',
-                    minute: '59',
-                    second: '59',
+                    y: splitDateObjects[0].year,
+                    m: splitDateObjects[0].month,
+                    d: splitDateObjects[0].day,
+                    h: '23',
+                    min: '59',
+                    s: '59',
                 });
             }
 
             return splitDateObjects.map(function (d) {
-                return new Date(d.year + '-' + d.month + '-' + d.day + ' ' + d.hour + ':' + d.minute + ':' + d.second);
+                // yyyy-mm-dd hh:mm:ss
+                return new Date(d.y + '-' + d.m + '-' + d.d + ' ' + d.h + ':' + d.min + ':' + d.s);
             });
         });
     }
