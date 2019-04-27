@@ -26,7 +26,7 @@ A small script for showing or hiding HTML content client-side based on the curre
         <div data-schedule="2019/04/26 - 2019/04/30">Hello world</div>
         ````
 
-    1. Show an element from 2019/04/26 10:00:00 local time through 2019/04/26 16:00:00 local time. Hide it at any time outside this range.
+    1. Show an element from 2019/04/26 10:00:00 local time through 2019/04/30 16:00:00 local time. Hide it at any time outside this range.
         ````html
         <div data-schedule="2019/04/26 10:00:00 - 2019/04/30 16:00:00">Hello world</div>
         ````
