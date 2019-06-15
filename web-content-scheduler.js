@@ -117,8 +117,8 @@ function webContentScheduler() {
             }
 
             return splitDateObjects.map(function (d) {
-                // yyyy-mm-dd hh:mm:ss
-                return new Date(d.y + '-' + d.m + '-' + d.d + ' ' + d.h + ':' + d.min + ':' + d.s);
+                // yyyy/mm/dd hh:mm:ss
+                return new Date(d.y + '/' + d.m + '/' + d.d + ' ' + d.h + ':' + d.min + ':' + d.s);
             });
         });
     }
