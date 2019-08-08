@@ -1,6 +1,6 @@
 # Web Content Scheduler
 
-A small script for showing or hiding HTML content client-side based on the current date when you can't do it server-side. Zero dependencies.
+A small (<1 KB minified/gzipped), zero-dependency script for showing or hiding HTML content client-side based on the current date when you can't do it server-side.
 
 ## Usage
 1. Include this JavaScript on the page:
