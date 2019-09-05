@@ -38,7 +38,7 @@ function webContentScheduler() {
             // Validate each date. If the year is missing, assume
             // the current year.
 
-            var splitDateObjects = startAndEnd.map(function (dateString, index) {
+            var dates = startAndEnd.map(function (dateString, index) {
                 dateString = dateString.trim();
                 var isStartRange = index === 0;
                 var isEndRange = index === 1;
@@ -68,58 +68,33 @@ function webContentScheduler() {
 
                 if (hour) {
                     // A time was provided.
-                    return {
-                        y: year,
-                        m: month,
-                        d: day,
-                        h: hour,
-                        min: (minute || '00'),
-                        s: (second || '00'),
-                    };
+                    return new Date(
+                                year + '/' +
+                                month + '/' +
+                                day + ' ' +
+                                hour + ':' +
+                                (minute || '00') + ':' +
+                                (second || '00')
+                    );
                 }
                 else if (isStartRange) {
                     // A time wasn't provided, so assume 00:00:00 (start of the day)
-                    return {
-                        y: year,
-                        m: month,
-                        d: day,
-                        h: '00',
-                        min: '00',
-                        s: '00',
-                    };
+                    return new Date(year + '/' + month + '/' + day + ' 00:00:00');
                 }
                 else if (isEndRange) {
                     // A time wasn't provided, so assume 23:59:59 (end of the day)
-                    return {
-                        y: year,
-                        m: month,
-                        d: day,
-                        h: '23',
-                        min: '59',
-                        s: '59',
-                    };
+                    return new Date(year + '/' + month + '/' + day + ' 23:59:59');
                 }
             });
 
-            if (splitDateObjects.length === 1) {
+            if (dates.length === 1) {
                 // There is a start but no end. Set the end to the 
                 // same day as start but with an ending time at the 
                 // end of the day.
-
-                splitDateObjects.push({
-                    y: splitDateObjects[0].year,
-                    m: splitDateObjects[0].month,
-                    d: splitDateObjects[0].day,
-                    h: '23',
-                    min: '59',
-                    s: '59',
-                });
+                dates.push(new Date(dates[0].year + '/' + dates[0].month + '/' + dates[0].day + ' 23:59:59'));
             }
 
-            return splitDateObjects.map(function (d) {
-                // yyyy/mm/dd hh:mm:ss
-                return new Date(d.y + '/' + d.m + '/' + d.d + ' ' + d.h + ':' + d.min + ':' + d.s);
-            });
+            return dates;
         });
     }
 
