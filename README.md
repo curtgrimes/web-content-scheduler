@@ -3,14 +3,10 @@
 A small (<1 KB minified/gzipped), zero-dependency script for showing or hiding HTML content client-side based on the current date when you can't do it server-side.
 
 ## Usage
-1. Include this JavaScript on the page:
+1. Include this on the page:
     ```html
     <script src="https://cdn.jsdelivr.net/gh/curtgrimes/web-content-scheduler@1/web-content-scheduler.min.js"></script>
-    ```
-
-1. Add this CSS to the page:
-    ```css
-    [data-schedule]:not(.schedule-shown) { display:none; }
+    <style type="text/css">[data-schedule]:not(.schedule-shown) { display:none; }</style>
     ```
 
 1. Add a `data-schedule` attribute to any elements that you want to show or hide on a specific date or date range.
